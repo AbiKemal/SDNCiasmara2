@@ -10,6 +10,9 @@
   <div class="container">
     <h2>Selamat Datang Halaman Alumni SDN Ciasmara 2 Angkatan 1990</h2>
     <p>List Anggota</p>
+
+    <!-- List Alumni -->
+    <ul id="list-alumni"></ul>
   </div>
 
   <!-- Menu Navigasi di Bawah -->
@@ -17,5 +20,26 @@
     <a href="index.html">🏠 Home</a>
     <a href="view.html">💰 Data Tabungan</a>
   </nav>
+
+  <script>
+    // URL CSV Sheet "ALUMNI" - pastikan ini benar
+    const alumniSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?gid=0&single=true&output=csv';
+
+    fetch(alumniSheetUrl)
+      .then(response => response.text())
+      .then(csv => {
+        const rows = csv.split('\n').map(row => row.split(','));
+        const list = document.getElementById('list-alumni');
+        rows.slice(1).forEach(row => {
+          const no = row[0]?.trim();
+          const nama = row[1]?.trim();
+          if (no && nama) {
+            const li = document.createElement('li');
+            li.textContent = `${no}. ${nama}`;
+            list.appendChild(li);
+          }
+        });
+      });
+  </script>
 </body>
 </html>
