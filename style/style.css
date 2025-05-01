@@ -37,6 +37,37 @@ th {
   background-color: #f2f2f2;
 }
 
+/* Menu navigasi bawah */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bottom-nav a:hover {
+  color: #4CAF50;
+}
+
+/* Tambahkan margin bawah agar konten tidak tertutup nav */
+.container {
+  margin-bottom: 60px;
+}
+
+
 button {
   padding: 8px 12px;
   background-color: #4CAF50;
