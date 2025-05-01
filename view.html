@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Siswa</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Data Siswa dari Google Sheets</h2>
+    <table id="data-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?output=csv';
+
+    fetch(sheetUrl)
+      .then(response => response.text())
+      .then(data => {
+        const rows = data.split('\n').map(row => row.split(','));
+        const tableHead = document.querySelector('#data-table thead');
+        const tableBody = document.querySelector('#data-table tbody');
+
+        // Buat header
+        let headerHTML = '<tr>';
+        rows[0].forEach(cell => {
+          headerHTML += `<th>${cell}</th>`;
+        });
+        headerHTML += '</tr>';
+        tableHead.innerHTML = headerHTML;
+
+        // Buat isi
+        rows.slice(1).forEach(row => {
+          let rowHTML = '<tr>';
+          row.forEach((cell, i) => {
+            rowHTML += `<td data-label="${rows[0][i]}">${cell}</td>`;
+          });
+          rowHTML += '</tr>';
+          tableBody.innerHTML += rowHTML;
+        });
+      });
+  </script>
+</body>
+</html>
 
