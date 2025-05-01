@@ -147,3 +147,20 @@ ul#list-alumni li {
   display: block;
   margin: 0 auto 0.5rem;
 }
+.header-flex {
+  display: flex;
+  align-items: center;
+  background-color: #007BFF;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.header-flex .logo {
+  margin-right: 1rem;
+}
+
+.header-flex h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
