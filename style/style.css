@@ -176,7 +176,7 @@ table th:nth-child(4) {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #D2691E;
   border-top: 1px solid #ccc;
   display: flex;
   justify-content: space-around;
@@ -195,7 +195,7 @@ table th:nth-child(4) {
   align-items: center;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: #DC143C; /* biru */
+  /* background-color: #DC143C; /* biru */
 }
 
 
