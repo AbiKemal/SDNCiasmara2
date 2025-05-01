@@ -38,6 +38,7 @@ table {
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #fff;
+  min-width: 600px;
 }
 
 table, th, td {
@@ -48,6 +49,7 @@ th, td {
   padding: 10px;
   text-align: left;
   word-break: break-word;
+  white-space: nowrap;
 }
 
 th {
@@ -74,7 +76,7 @@ button:hover {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #D2691E;
   border-top: 1px solid #ccc;
   display: flex;
   justify-content: space-around;
@@ -85,31 +87,30 @@ button:hover {
 
 .bottom-nav a {
   text-decoration: none;
-  color: #333;
+  color: white;
   font-size: 16px;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
 }
 
-.bottom-nav a:hover {
-  color: #4CAF50;
-}
-
-/* ====== Responsif untuk Mobile ====== */
+/* ====== Responsif untuk Mobile (Tetap Tabel Utuh) ====== */
 @media screen and (max-width: 600px) {
   .table-container {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  table, thead, tbody, th, td, tr {
-    display: table;
-    width: 100%;
+  table {
+    width: max-content;
+    min-width: 600px;
   }
 
   th, td {
-    padding: 8px;
+    white-space: nowrap;
   }
 }
 
@@ -127,7 +128,7 @@ ul#list-alumni li {
 
 /* ====== Header & Logo ====== */
 .site-header {
-  background-color: #007BFF; /* biru */
+  background-color: #007BFF;
   color: white;
   padding: 1rem;
   text-align: center;
@@ -159,44 +160,3 @@ ul#list-alumni li {
   font-size: 1.5rem;
   color: white;
 }
-/* Kolom 1, 2, dan 3 auto width */
-table td:nth-child(1),
-table th:nth-child(1),
-table td:nth-child(2),
-table th:nth-child(2),
-table td:nth-child(3),
-table th:nth-child(3),
-table td:nth-child(4),
-table th:nth-child(4) {
-  white-space: nowrap;
-  width: 1%;
-}
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #D2691E;
-  border-top: 1px solid #ccc;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-}
-
-.bottom-nav a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 20px;
-  border-radius: 8px;
-  /* background-color: #DC143C; /* biru */
-}
-
-
-
