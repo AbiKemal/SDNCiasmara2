@@ -26,7 +26,7 @@ fetch(databaseSheetUrl)
       return;
     }
 
-    const excludedIndex = 4; // kolom ke-5 (indeks 4)
+    const excludedIndex = [4, 5, 6]; // kolom ke-5 (indeks 4)
 
     const table = document.createElement('table');
     const thead = document.createElement('thead');
