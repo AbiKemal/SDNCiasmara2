@@ -12,7 +12,10 @@ fetch(alumniSheetUrl)
       const nama = row[1]?.trim();
       if (no && nama) {
         const li = document.createElement('li');
-        li.textContent = `${no}. ${nama}`;
+        const link = document.createElement('a');
+        link.href = `ViewAlumnus.html?nama=${encodeURIComponent(nama)}`;
+        link.textContent = `${no}. ${nama}`;
+        li.appendChild(link);
         list.appendChild(li);
       }
     });
