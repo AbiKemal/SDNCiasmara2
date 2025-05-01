@@ -7,6 +7,7 @@ fetch(databaseSheetUrl)
   .then(response => response.text())
   .then(csv => {
     const rows = csv
+      .trim()
       .split('\n')
       .map(row => row.split(',').map(cell => cell.trim().replace(/^"|"$/g, '')));
 
@@ -14,7 +15,9 @@ fetch(databaseSheetUrl)
     if (!container || !targetNama) return;
 
     const header = rows[0];
-    const excludedIndex = [4, 5]; // Sembunyikan kolom ke-5 dan ke-6 (indeks 4 dan 5)
+    const excludedIndex = [4, 5]; // Kolom tersembunyi
+    const jumlahIndex = header.findIndex(h => h.toLowerCase().includes('jumlah'));
+    let total = 0;
 
     const matchingRows = rows.slice(1).filter(row => {
       const nama = row[1]?.toLowerCase();
@@ -27,6 +30,8 @@ fetch(databaseSheetUrl)
     }
 
     const table = document.createElement('table');
+
+    // THEAD
     const thead = document.createElement('thead');
     const headRow = document.createElement('tr');
     header.forEach((cell, i) => {
@@ -39,23 +44,51 @@ fetch(databaseSheetUrl)
     thead.appendChild(headRow);
     table.appendChild(thead);
 
+    // TBODY
     const tbody = document.createElement('tbody');
     matchingRows.forEach(row => {
       const tr = document.createElement('tr');
       row.forEach((cell, i) => {
         if (!excludedIndex.includes(i)) {
           const td = document.createElement('td');
-          td.textContent = cell;
+          if (i === jumlahIndex) {
+            const num = parseInt(cell.replace(/[^\d]/g, '')) || 0;
+            total += num;
+            td.textContent = formatNumber(num);
+          } else {
+            td.textContent = cell;
+          }
           tr.appendChild(td);
         }
       });
       tbody.appendChild(tr);
     });
-
     table.appendChild(tbody);
+
+    // TFOOT
+    if (jumlahIndex >= 0) {
+      const tfoot = document.createElement('tfoot');
+      const tr = document.createElement('tr');
+      header.forEach((_, i) => {
+        const td = document.createElement('td');
+        if (!excludedIndex.includes(i)) {
+          if (i === jumlahIndex) {
+            td.textContent = `Total: ${formatNumber(total)}`;
+          }
+          tr.appendChild(td);
+        }
+      });
+      tfoot.appendChild(tr);
+      table.appendChild(tfoot);
+    }
+
     container.appendChild(table);
   })
   .catch(error => {
     console.error('Gagal mengambil data DATABASE:', error);
     document.getElementById('result').innerHTML = '<p>Gagal mengambil data.</p>';
   });
+
+function formatNumber(num) {
+  return num.toLocaleString('id-ID');
+}
