@@ -3,8 +3,6 @@ const targetNama = urlParams.get('nama');
 
 const databaseSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?gid=998006305&single=true&output=csv';
 
-
-
 fetch(databaseSheetUrl)
   .then(response => response.text())
   .then(csv => {
@@ -16,6 +14,8 @@ fetch(databaseSheetUrl)
     if (!container || !targetNama) return;
 
     const header = rows[0];
+    const excludedIndex = [4, 5]; // Sembunyikan kolom ke-5 dan ke-6 (indeks 4 dan 5)
+
     const matchingRows = rows.slice(1).filter(row => {
       const nama = row[1]?.toLowerCase();
       return nama === targetNama.toLowerCase();
@@ -26,13 +26,11 @@ fetch(databaseSheetUrl)
       return;
     }
 
-    const excludedIndex = [4, 5, 6]; // kolom ke-5 (indeks 4)
-
     const table = document.createElement('table');
     const thead = document.createElement('thead');
     const headRow = document.createElement('tr');
     header.forEach((cell, i) => {
-      if (i !== excludedIndex) {
+      if (!excludedIndex.includes(i)) {
         const th = document.createElement('th');
         th.textContent = cell;
         headRow.appendChild(th);
@@ -45,7 +43,7 @@ fetch(databaseSheetUrl)
     matchingRows.forEach(row => {
       const tr = document.createElement('tr');
       row.forEach((cell, i) => {
-        if (i !== excludedIndex) {
+        if (!excludedIndex.includes(i)) {
           const td = document.createElement('td');
           td.textContent = cell;
           tr.appendChild(td);
