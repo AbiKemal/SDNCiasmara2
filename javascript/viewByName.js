@@ -12,8 +12,8 @@ fetch(databaseSheetUrl)
 
     const header = rows[0];
     const matchingRows = rows.slice(1).filter(row => {
-      const nama = row[1]?.trim().toLowerCase();
-      return nama && nama.includes(targetNama.toLowerCase());
+      const nama = row[1]?.trim().replace(/^"|"$/g, '').toLowerCase();
+      return nama === targetNama.toLowerCase();
     });
 
     if (matchingRows.length === 0) {
@@ -29,7 +29,7 @@ fetch(databaseSheetUrl)
       const tr = document.createElement('tr');
       row.forEach(cell => {
         const td = document.createElement('td');
-        td.textContent = cell;
+        td.textContent = cell.replace(/^"|"$/g, '');
         tr.appendChild(td);
       });
       tbody.appendChild(tr);
