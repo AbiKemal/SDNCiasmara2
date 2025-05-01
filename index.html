@@ -11,7 +11,7 @@
     <h2>Selamat Datang Halaman Alumni SDN Ciasmara 2 Angkatan 1990</h2>
     <p>List Anggota</p>
 
-    <!-- List Alumni -->
+    <!-- Daftar Alumni -->
     <ul id="list-alumni"></ul>
   </div>
 
@@ -21,25 +21,7 @@
     <a href="view.html">💰 Data Tabungan</a>
   </nav>
 
-<script>
-  const alumniSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?gid=GID_SHEET&single=true&output=csv';
-
-  fetch(alumniSheetUrl)
-    .then(response => response.text())
-    .then(csv => {
-      const rows = csv.split('\n').map(row => row.split(','));
-      const list = document.getElementById('list-alumni');
-      rows.slice(1).forEach(row => {
-        const no = row[0]?.trim();
-        const nama = row[1]?.trim();
-        if (no && nama) {
-          const li = document.createElement('li');
-          li.textContent = `${no}. ${nama}`;
-          list.appendChild(li);
-        }
-      });
-    });
-</script>
-
+  <!-- Script JavaScript Eksternal -->
+  <script src="javascript/javascript.js"></script>
 </body>
 </html>
