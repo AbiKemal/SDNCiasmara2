@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Data Siswa</title>
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/style.css" />
   <style>
     .table-container {
       overflow-x: auto;
+      width: 100%;
     }
-    table th:nth-child(1),
-    table th:nth-child(2),
-    table th:nth-child(3),
-    table td:nth-child(1),
-    table td:nth-child(2),
-    table td:nth-child(3) {
-      min-width: 120px;
+
+    table {
+      width: max-content;
+      border-collapse: collapse;
+      min-width: 800px;
     }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
     tfoot td {
       font-weight: bold;
       background-color: #f9f9f9;
     }
+
+    @media (max-width: 768px) {
+      table {
+        font-size: 14px;
+      }
+    }
   </style>
-<style>
-  .table-container {
-    overflow-x: auto;
-    width: 100%;
-  }
-
-  table {
-    width: max-content;
-    border-collapse: collapse;
-  }
-
-  table th, table td {
-    padding: 8px;
-    border: 1px solid #ccc;
-    white-space: nowrap;
-  }
-</style>
-  
 </head>
 <body>
   <div class="container">
@@ -52,7 +47,6 @@
 
     <h2>List Tabungan</h2>
 
-    
     <div class="table-container">
       <table id="data-table">
         <thead></thead>
@@ -81,15 +75,11 @@
         let jumlahIndex = rows[0].findIndex(h => h.toLowerCase().includes('jumlah'));
         let total = 0;
 
-        // Header
         let headerHTML = '<tr>';
-        rows[0].forEach(cell => {
-          headerHTML += `<th>${cell}</th>`;
-        });
+        rows[0].forEach(cell => headerHTML += `<th>${cell}</th>`);
         headerHTML += '</tr>';
         tableHead.innerHTML = headerHTML;
 
-        // Isi
         rows.slice(1).forEach(row => {
           let rowHTML = '<tr>';
           row.forEach((cell, i) => {
@@ -99,18 +89,17 @@
               total += number;
               value = formatNumber(number);
             }
-            rowHTML += `<td data-label="${rows[0][i]}">${value}</td>`;
+            rowHTML += `<td>${value}</td>`;
           });
           rowHTML += '</tr>';
           tableBody.innerHTML += rowHTML;
         });
 
-        // Footer (Total)
         if (jumlahIndex >= 0) {
           let footHTML = '<tr>';
           rows[0].forEach((_, i) => {
             if (i === jumlahIndex) {
-              footHTML += `<td data-label="Total">Total: ${formatNumber(total)}</td>`;
+              footHTML += `<td>Total: ${formatNumber(total)}</td>`;
             } else {
               footHTML += '<td></td>';
             }
