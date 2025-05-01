@@ -4,6 +4,7 @@ const targetNama = urlParams.get('nama');
 const databaseSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?gid=998006305&single=true&output=csv';
 
 
+
 fetch(databaseSheetUrl)
   .then(response => response.text())
   .then(csv => {
@@ -25,16 +26,30 @@ fetch(databaseSheetUrl)
       return;
     }
 
+    const excludedIndex = 4; // kolom ke-5 (indeks 4)
+
     const table = document.createElement('table');
-    table.innerHTML = `<thead><tr>${header.map(h => `<th>${h}</th>`).join('')}</tr></thead>`;
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+    header.forEach((cell, i) => {
+      if (i !== excludedIndex) {
+        const th = document.createElement('th');
+        th.textContent = cell;
+        headRow.appendChild(th);
+      }
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
     matchingRows.forEach(row => {
       const tr = document.createElement('tr');
-      row.forEach(cell => {
-        const td = document.createElement('td');
-        td.textContent = cell;
-        tr.appendChild(td);
+      row.forEach((cell, i) => {
+        if (i !== excludedIndex) {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        }
       });
       tbody.appendChild(tr);
     });
