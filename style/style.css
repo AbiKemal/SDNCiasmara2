@@ -26,6 +26,12 @@ p {
   margin-bottom: 80px; /* ruang untuk nav bawah */
 }
 
+/* ====== Table Container (Scrollable) ====== */
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
 /* ====== Tabel ====== */
 table {
   width: 100%;
@@ -41,6 +47,7 @@ table, th, td {
 th, td {
   padding: 10px;
   text-align: left;
+  word-break: break-word;
 }
 
 th {
@@ -92,38 +99,21 @@ button:hover {
 
 /* ====== Responsif untuk Mobile ====== */
 @media screen and (max-width: 600px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
   table, thead, tbody, th, td, tr {
-    display: block;
+    display: table;
     width: 100%;
   }
 
-  tr {
-    margin-bottom: 15px;
-  }
-
   th, td {
-    text-align: right;
-    position: relative;
-    padding-left: 50%;
-  }
-
-  th::before, td::before {
-    position: absolute;
-    left: 10px;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: bold;
-  }
-
-  td::before {
-    content: attr(data-label);
-  }
-
-  th::before {
-    content: attr(data-label);
+    padding: 8px;
   }
 }
 
+/* ====== Daftar Alumni ====== */
 ul#list-alumni {
   list-style-type: none;
   padding: 0;
@@ -135,6 +125,7 @@ ul#list-alumni li {
   border-bottom: 1px solid #eee;
 }
 
+/* ====== Header & Logo ====== */
 .site-header {
   background-color: #007BFF; /* biru */
   color: white;
@@ -147,6 +138,7 @@ ul#list-alumni li {
   display: block;
   margin: 0 auto 0.5rem;
 }
+
 .header-flex {
   display: flex;
   align-items: center;
@@ -154,6 +146,8 @@ ul#list-alumni li {
   color: white;
   padding: 1rem;
   border-radius: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .header-flex .logo {
@@ -163,7 +157,5 @@ ul#list-alumni li {
 .header-flex h1 {
   margin: 0;
   font-size: 1.5rem;
-}
-.header-flex h1 {
   color: white;
 }
