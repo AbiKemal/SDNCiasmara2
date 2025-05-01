@@ -164,3 +164,6 @@ ul#list-alumni li {
   margin: 0;
   font-size: 1.5rem;
 }
+.header-flex h1 {
+  color: white;
+}
