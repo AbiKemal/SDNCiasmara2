@@ -1,16 +1,9 @@
-/* Container agar konten di tengah */
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
+/* ====== Tampilan Umum ====== */
 body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2 {
@@ -18,10 +11,27 @@ h1, h2 {
   text-align: center;
 }
 
+p {
+  text-align: center;
+}
+
+/* ====== Container Tengah ====== */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 80px; /* ruang untuk nav bawah */
+}
+
+/* ====== Tabel ====== */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  background-color: #fff;
 }
 
 table, th, td {
@@ -29,7 +39,7 @@ table, th, td {
 }
 
 th, td {
-  padding: 8px;
+  padding: 10px;
   text-align: left;
 }
 
@@ -37,37 +47,7 @@ th {
   background-color: #f2f2f2;
 }
 
-/* Menu navigasi bawah */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #ffffff;
-  border-top: 1px solid #ccc;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-}
-
-.bottom-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.bottom-nav a:hover {
-  color: #4CAF50;
-}
-
-/* Tambahkan margin bawah agar konten tidak tertutup nav */
-.container {
-  margin-bottom: 60px;
-}
-
-
+/* ====== Tombol Umum ====== */
 button {
   padding: 8px 12px;
   background-color: #4CAF50;
@@ -81,7 +61,36 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Responsif untuk mobile */
+/* ====== Menu Navigasi di Bawah ====== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom-nav a:hover {
+  color: #4CAF50;
+}
+
+/* ====== Responsif untuk Mobile ====== */
 @media screen and (max-width: 600px) {
   table, thead, tbody, th, td, tr {
     display: block;
