@@ -171,3 +171,40 @@ table th:nth-child(4) {
   white-space: nowrap;
   width: 1%;
 }
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.bottom-nav a[href="index.html"] {
+  background-color: #DC143C; /* merah crimson */
+}
+
+.bottom-nav a[href="view.html"] {
+  background-color: #D2691E; /* coklat oranye */
+}
+
+.bottom-nav a:hover {
+  opacity: 0.85;
+}
