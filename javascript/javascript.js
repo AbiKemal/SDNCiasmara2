@@ -1,5 +1,4 @@
-// Ganti gid sesuai dengan Sheet "ALUMNI"
-const alumniSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?gid=0&single=true&output=csv';
+const alumniSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?output=csv';
 
 fetch(alumniSheetUrl)
   .then(response => response.text())
@@ -21,4 +20,3 @@ fetch(alumniSheetUrl)
   .catch(error => {
     console.error('Gagal mengambil data alumni:', error);
   });
-
