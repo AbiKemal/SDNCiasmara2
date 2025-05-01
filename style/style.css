@@ -159,3 +159,13 @@ ul#list-alumni li {
   font-size: 1.5rem;
   color: white;
 }
+/* Kolom 1, 2, dan 3 auto width */
+table td:nth-child(1),
+table th:nth-child(1),
+table td:nth-child(2),
+table th:nth-child(2),
+table td:nth-child(3),
+table th:nth-child(3) {
+  white-space: nowrap;
+  width: 1%;
+}
