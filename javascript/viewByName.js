@@ -11,7 +11,10 @@ fetch(databaseSheetUrl)
     if (!container || !targetNama) return;
 
     const header = rows[0];
-    const matchingRows = rows.slice(1).filter(row => row[1]?.trim().toLowerCase() === targetNama.toLowerCase());
+    const matchingRows = rows.slice(1).filter(row => {
+      const nama = row[1]?.trim().toLowerCase();
+      return nama && nama.includes(targetNama.toLowerCase());
+    });
 
     if (matchingRows.length === 0) {
       container.innerHTML = `<p>Data untuk <strong>${targetNama}</strong> tidak ditemukan.</p>`;
@@ -20,6 +23,7 @@ fetch(databaseSheetUrl)
 
     const table = document.createElement('table');
     table.innerHTML = `<thead><tr>${header.map(h => `<th>${h}</th>`).join('')}</tr></thead>`;
+    
     const tbody = document.createElement('tbody');
     matchingRows.forEach(row => {
       const tr = document.createElement('tr');
@@ -30,10 +34,10 @@ fetch(databaseSheetUrl)
       });
       tbody.appendChild(tr);
     });
+
     table.appendChild(tbody);
     container.appendChild(table);
   })
   .catch(error => {
     console.error('Gagal mengambil data DATABASE:', error);
   });
-
