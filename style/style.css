@@ -195,16 +195,8 @@ table th:nth-child(4) {
   align-items: center;
   padding: 10px 20px;
   border-radius: 8px;
+  background-color: #DC143C; /* biru */
 }
 
-.bottom-nav a[href="index.html"] {
-  background-color: #DC143C; /* merah crimson */
-}
 
-.bottom-nav a[href="view.html"] {
-  background-color: #D2691E; /* coklat oranye */
-}
 
-.bottom-nav a:hover {
-  opacity: 0.85;
-}
