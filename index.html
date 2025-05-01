@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Siswa</title>
   <link rel="stylesheet" href="style/style.css">
-  <title>Data dari Google Sheets</title>
 </head>
 <body>
-  <h2>Data Siswa</h2>
-  <table border="1" id="data-table">
-    <thead></thead>
-    <tbody></tbody>
-  </table>
+  <div class="container">
+    <h2>Data Siswa dari Google Sheets</h2>
+    <table id="data-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
   <script>
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vToAuXPbEoxBSVi4_IYEhkGt85yVpyLPxTbsxrFbkdNg2OFhfpBTIX9dj7m5sBL5UcclSFcDGY2wiOU/pub?output=csv';
@@ -34,8 +36,8 @@
         // Buat isi
         rows.slice(1).forEach(row => {
           let rowHTML = '<tr>';
-          row.forEach(cell => {
-            rowHTML += `<td>${cell}</td>`;
+          row.forEach((cell, i) => {
+            rowHTML += `<td data-label="${rows[0][i]}">${cell}</td>`;
           });
           rowHTML += '</tr>';
           tableBody.innerHTML += rowHTML;
@@ -44,4 +46,3 @@
   </script>
 </body>
 </html>
-
